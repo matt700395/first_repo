@@ -1,0 +1,37 @@
+
+    <div class="jihyun_header">
+        <div>
+            <h1 class="jihyun_logo">Linku-Linku</h1>
+        </div>
+        <div class="jihyun_header_navbar">
+            <a href="{% url 'articleapp:list' %}" class="jihyun_header_nav">
+                <span>Articles</span>
+            </a>
+
+            <a href="{% url 'projectapp:list' %}" class="jihyun_header_nav">
+                <span>Projects</span>
+            </a>
+
+            <a href="{% url 'subscribeapp:list' %}" class="jihyun_header_nav">
+                <span>Subscription</span>
+            </a>
+
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="jihyun_header_nav">
+                <span>login</span>
+            </a>
+            <a href="{% url 'accountapp:create' %}" class="jihyun_header_nav">
+                <span>SignUp</span>
+            </a>
+            {% else %}
+
+            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="jihyun_header_nav">
+                <span>MyPage</span>
+            </a>
+
+            <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="jihyun_header_nav">
+                <span>logout</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
